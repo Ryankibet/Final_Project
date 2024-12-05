@@ -1,0 +1,83 @@
+
+{% extends 'index.html' %}
+{%load static%}
+{% block title%} Register {%endblock%}
+{% block content %}
+
+{% if messages %}
+    <ul>
+      {% for message in messages %}
+      <li style="colour: {% if message.tags == 'error' %}red{% else %}green{% endif %};">
+        {{ message }}
+      </li>
+      {% endfor %}
+    </ul>
+
+    {% endif %}
+
+<link rel="stylesheet" href="{% static 'Static\assets\css\register.css' %}">
+
+
+
+
+<div class="card bg-light">
+<article class="card-body mx-auto" style="max-width: 400px;">
+	<h4 class="card-title mt-3 text-center">Create Account</h4>
+	<p class="text-center">Get started with your free account</p>
+
+	<form method="post">
+		{% csrf_token %}
+	<div class="form-group input-group">
+		<div class="input-group-prepend">
+		    <span class="input-group-text"> <i class="fa fa-user"></i> </span>
+			<input name="username" class="form-control" placeholder="username" type="text" style="height: 4px;">
+		 </div>
+        
+    </div> <!-- form-group// -->
+    <div class="form-group input-group">
+    	<div class="input-group-prepend">
+		    <span class="input-group-text"> <i class="fa fa-envelope"></i> </span>
+		 </div>
+        <input name="email" class="form-control" placeholder="Email address" type="email">
+    </div> <!-- form-group// -->
+    <div class="form-group input-group">
+    	<div class="input-group-prepend">
+			<span class="input-group-text"> <i class="fa fa-phone"></i> </span>
+		</div>
+		<select class="custom-select" style="max-width: 90px;">
+			<option selected="">+254</option>
+		    <option value="1">+255</option>
+		    <option value="2">+256</option>
+		</select>
+	<input name="phone" class="form-control" placeholder="Phone number" type="text" style="height: 10px; " >
+    </div> <!-- form-group// -->
+    <div class="form-group input-group">
+    	<div class="input-group-prepend">
+		   
+		</div>
+		
+	</div> <!-- form-group end.// -->
+    <div class="form-group input-group">
+    	<div class="input-group-prepend">
+		    <span class="input-group-text"> <i class="fa fa-lock"></i> </span>
+		</div>
+        <input name="password" class="form-control" placeholder="Create password" type="password">
+    </div> <!-- form-group// -->
+    <div class="form-group input-group">
+    	<div class="input-group-prepend">
+		    <span class="input-group-text"> <i class="fa fa-lock"></i> </span>
+		</div>
+        <input name="confirm_password" class="form-control" placeholder="confirm password" type="password">
+    </div> <!-- form-group// -->                                      
+    <div class="form-group">
+        <button type="submit" class="btn btn-primary btn-block"> Create Account  </button>
+    </div> <!-- form-group// -->      
+    <p class="text-center">Have an account? <a href="{% url 'accounts:login' %}">Log In</a> </p>                                                                 
+</form>
+</article>
+</div> <!-- card.// -->
+
+</div> 
+
+
+{%endblock%}

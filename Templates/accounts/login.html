@@ -1,0 +1,44 @@
+
+{% extends 'index.html' %}
+{%load static%}
+{% block title%} Log In {%endblock%}
+{%block content%}
+
+{% if messages %}
+    <ul>
+      {% for message in messages %}
+      <li style="colour: {% if message.tags == 'error' %}red{% else %}green{% endif %};">
+        {{ message }}
+      </li>
+      {% endfor %}
+    </ul>
+
+    {% endif %}
+
+ 
+<div class="wrapper fadeInDown">
+  <div id="formContent">
+    <!-- Tabs Titles -->
+
+    <!-- Icon -->
+    <div class="fadeIn first">
+    <img src="{% static 'Static\assets\img\sushobhan-badhai-LrPKL7jOldI-unsplash.jpg' %}"  style="height: 7pc;" >
+    </div>
+<p>Log In</p>
+    <!-- Login Form -->
+    <form method="post">
+        {% csrf_token %}
+      <input type="text" id="login" class="fadeIn second" name="username" placeholder="username">
+      <input type="text" id="password" class="fadeIn third" name="password" placeholder="password">
+      <input type="submit" class="fadeIn fourth" value="Log In">
+    </form>
+
+    <!-- Remind Passowrd -->
+    <div id="formFooter">
+      <a  href="#" style="color: black;">You do not have an account?<ul>
+      <a href="{% url 'accounts:register' %}">Register</a></ul></a>
+    </div>
+
+  </div>
+</div>
+{%endblock%}
