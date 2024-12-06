@@ -11,7 +11,7 @@ urlpatterns =[
     path('appointment/', views.appointment, name='appointment'),
     path('blog/', views.blog, name='blog'),
     path('team/', views.team, name='team'),
-    
-    
-
+    path('show_appointments/', views.retrieve_appointments, name='show_appointments'),
+    path('delete/<int:id>', views.delete_appointment, name="delete_appointment"),
+    path('edit/<int:appointment_id>', views.update_appointment, name="update_appointment"),   
 ]

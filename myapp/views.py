@@ -29,6 +29,9 @@ def appointment(request):
     if request.method == 'POST':
         form = AppointmentForm(request.POST)
         if form.is_valid():
+            appointment = form.save(commit=False)
+            appointment.user = request.user
+
             form.save()
             messages.success(request, "Your message has been sent successfully!")
             
@@ -50,11 +53,35 @@ def appointment(request):
         contact = Appointment(
             name = request.POST.get('name'),
             email = request.POST.get('email'),
-            Message = request.POST.get('Message'),
+            phone = request.POST.get('phone'),
+            message = request.POST.get('message'),
         )
         contact.save()
         # Redirect to a page after saving
-        return redirect('myapp:index')  # Adjust the redirect to your desired page
+        return redirect('myapp:appointment')  # Adjust the redirect to your desired page
     else:
         return render(request, 'appointment.html')
-  
+@login_required
+def retrieve_appointments(request):
+    appointments = Appointment.objects.all()
+    context = {'appointments':appointments}
+    return render(request, 'show_appointments.html', context)
+ 
+
+def delete_appointment(request, id):
+    appointment = Appointment.objects.get(id=id)
+    appointment.delete()
+    return redirect("myapp:show_appointments")
+
+def update_appointment(request, appointment_id):
+    appointment =get_object_or_404(Appointment, id=appointment_id )
+    if request.method == 'POST':
+        appointment.name = request.POST.get('name')
+        appointment.email = request.POST.get('email')
+        appointment.message = request.POST.get('message')
+        appointment.save()
+        return redirect("myapp:show_appointments")
+     
+    context = {'appointment': appointment}
+    return render(request, "update_appointment.html", context)
+
