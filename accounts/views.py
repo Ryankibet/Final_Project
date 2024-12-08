@@ -19,7 +19,7 @@ def register(request):
                user.save()
                print(user)
                messages.success(request, "Account created successfully ")
-               return redirect('myapp:index') 
+               return redirect('login_view') 
             except:
                messages.error(request, "Username already exist")
     else:

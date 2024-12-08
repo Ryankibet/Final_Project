@@ -13,5 +13,8 @@ urlpatterns =[
     path('team/', views.team, name='team'),
     path('show_appointments/', views.retrieve_appointments, name='show_appointments'),
     path('delete/<int:id>', views.delete_appointment, name="delete_appointment"),
-    path('edit/<int:appointment_id>', views.update_appointment, name="update_appointment"),   
+    path('edit/<int:appointment_id>', views.update_appointment, name="update_appointment"), 
+    path('pay/', views.pay, name='pay' ),
+    path('stk/', views.stk, name='stk'), # send the stk push prompt
+    path('token/', views.token, name='token'), # generate the token for that particular transaction  
 ]
