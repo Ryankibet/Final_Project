@@ -21,7 +21,7 @@ def register(request):
                messages.success(request, "Account created successfully ")
                return redirect('login_view') 
             except:
-               messages.error(request, "Username already exist")
+               messages.error(request, "")
     else:
      messages.error(request, "")
      
